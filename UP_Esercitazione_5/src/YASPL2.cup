@@ -1,0 +1,376 @@
+// Specifica CUP per il linguaggio YASPL2
+
+import java_cup.runtime.*;
+import SyntaxTree.*;
+
+parser code{: 
+	Lexer lexer;
+	
+	public YASPL2Cup(Lexer lexer){
+	    super(lexer);
+	    this.lexer = lexer;
+    }
+    :}; 
+  
+ scan with {: return lexer.next_token(); :};
+ 
+ /* Terminals (tokens returned by the scanner). */
+ terminal HEAD, START; 
+ terminal SEMI, COMMA, ASSIGN, INT, BOOL, DOUBLE;
+ terminal DEF, IF, THEN, ELSE, WHILE, DO, NOT;
+ terminal TRUE, FALSE;
+ terminal LPAR, RPAR, COLON, LGPAR, RGPAR, PLUS, MINUS, TIMES, DIV, GT, GE, LT, LE, EQ, AND, OR;
+ terminal UMINUS;
+ terminal READ, WRITE;
+ terminal String NUMBER_INT, NUMBER_DOUBLE, STRING_CONST, NAME;
+
+
+ /* Non-terminals */
+ non terminal Leaf type;
+ non terminal NewScopeNode programma, def_decl;
+ non terminal OpNode simple_stat, statements, decls, body, var_decl, var_decls, par_decls, vars, types;
+ non terminal Node comp_stat, stat;
+ non terminal Node out_values, bool_expr, exprs;
+ non terminal Node expr;
+ non terminal Node exprs_list, statements_list, vars_list, types_list, out_values_list;
+ non terminal Node var_decls_list, par_decls_list, decls_list;
+ non terminal String arith_op, bool_op, rel_op;
+ 
+ /* Precedences */
+precedence nonassoc ELSE;
+precedence left PLUS, MINUS, OR;
+precedence left TIMES, DIV, AND;
+/* Due occorrenze consecutive di terminali non associativi generano errore, usato per operazioni di confronto */
+precedence nonassoc GT, GE, LT, LE, EQ;
+precedence left UMINUS, NOT, COMMA;
+ 
+ /* The grammar */
+ 
+programma ::= HEAD decls:decls START statements:sts {: RESULT = new ProgramOp("ProgramOp", decls, sts); :};
+ 
+decls ::= var_decl:vd decls_list:dl {: OpNode toReturn = new OpNode("DeclsVarOp", vd);
+											if(dl!=null){
+												for (Node node : ((OpNode) dl).nodeList()){
+													toReturn.addNode(node);
+												}
+											}
+											RESULT = toReturn; 
+										:}
+		|
+		def_decl:vd decls_list:dl {: OpNode toReturn = new OpNode("DeclsDefOp", vd);
+											if(dl!=null){
+												for (Node node : ((OpNode) dl).nodeList()){
+													toReturn.addNode(node);
+												}
+											}
+											RESULT = toReturn;
+										:}
+		|
+		/* empty */ {: RESULT = null; :}
+		;
+		
+decls_list ::= var_decl:vd decls_list:dl {: OpNode toReturn = new OpNode("DeclsList", vd);
+														if (dl!=null){
+													   		for (Node node : ((OpNode) dl).nodeList()){ 
+													   			toReturn.addNode(node); 
+													   		}
+													   	}
+												   RESULT = toReturn; 
+												 :}
+				|
+				def_decl:vd decls_list:dl {: OpNode toReturn = new OpNode("DeclsList", vd);
+														if (dl!=null){
+													   		for (Node node : ((OpNode) dl).nodeList()){ 
+													   			toReturn.addNode(node); 
+													   		}
+													   	}
+												   RESULT = toReturn; 
+												 :}
+				|
+				/* empty */ {: RESULT = null; :}
+				;
+		
+statements ::= stat:s statements_list:statl {: OpNode toReturn = new OpNode("StatsOp", s);
+												if(statl!=null){
+													for (Node node : ((OpNode) statl).nodeList()){ 
+														toReturn.addNode(node);
+													}
+												}
+												RESULT = toReturn; 
+											:}
+			;
+			
+statements_list ::=  stat:s statements_list:statl {: OpNode toReturn = new OpNode("StatsList", s);
+														if (statl!=null){
+													   		for (Node node : ((OpNode) statl).nodeList()){ 
+													   			toReturn.addNode(node); 
+													   		}
+													   	}
+												   RESULT = toReturn; 
+												 :}
+				|
+				 /* empty */ {: RESULT = null; :}
+				;			
+
+var_decl ::= type:type vars:vars SEMI {: RESULT = new VarDeclOp("VarDeclOp", type, vars ); :}
+		;
+
+type ::= INT {: RESULT = new Leaf("integer",null, "integer"); :}
+		|
+		BOOL {: RESULT = new Leaf("boolean",null, "boolean"); :}
+		|
+		DOUBLE {: RESULT = new Leaf("double",null, "double"); :}
+		;
+
+vars ::= NAME:name vars_list:varsl {: OpNode toReturn = new VarOp("VarOp", new Leaf("ID", name, "") );
+										if(varsl!=null){
+											toReturn.addNode(varsl);
+										}
+										RESULT = toReturn; 
+									:}
+		;
+		
+vars_list ::= COMMA NAME:name vars_list:varsl {: OpNode toReturn = new VarOp("VarsList", new Leaf("ID", name, "") );
+													if (varsl!=null){
+													   		toReturn.addNode(varsl); 
+													 }
+												 RESULT = toReturn; 
+											:}
+			|
+			/* empty */ {: RESULT = null; :}
+			;
+			
+types ::= type:type types_list:typesl {: OpNode toReturn = new OpNode("TypesOp", type);
+										if(typesl!=null){
+											for (Node node : ((OpNode) typesl).nodeList()){ 
+												toReturn.addNode(node);
+											}
+										}
+										RESULT = toReturn; 
+									:}
+		;
+		
+types_list ::= COMMA type:type types_list:typesl {: OpNode toReturn = new OpNode("TypesList", type);
+													if (typesl!=null){
+													 	for (Node node : ((OpNode) typesl).nodeList()){
+													   		toReturn.addNode(node);
+													   	}
+													 }
+												 RESULT = toReturn; 
+											:}
+ 			|
+ 			/* empty */ {: RESULT = null; :} 
+			;
+			
+def_decl ::= DEF NAME:name LPAR var_decls:vds RPAR COLON par_decls:pds body:body {: RESULT = new ProcDeclOp("ProcDeclOp", new Leaf("ID", name, ""), vds, pds, body); :} 
+			; 
+
+var_decls ::= var_decl:vd var_decls_list:vdl {: OpNode toReturn = new OpNode("VarDeclsOp", vd);
+												if(vdl!=null){
+													for (Node node : ((OpNode) vdl).nodeList()){ 
+														toReturn.addNode(node);
+													}
+												}
+												RESULT = toReturn; 
+											:}
+			|
+			/* empty */ {: RESULT = null; :}
+			;
+		
+var_decls_list ::= var_decl:vd var_decls_list:vdl {: OpNode toReturn = new OpNode("VarDeclsList", vd);
+														if (vdl!=null){
+														 	for (Node node : ((OpNode) vdl).nodeList()){
+														   		toReturn.addNode(node);
+														   	}
+														 }
+													 RESULT = toReturn; 
+												:}
+				|
+				/* empty */ {: RESULT = null; :}
+				;
+			
+par_decls ::= var_decl:vd par_decls_list:pdl {: OpNode toReturn = new ParDeclOp("ParDeclsOp", vd);
+												if(pdl!=null){
+													toReturn.addNode(pdl);
+												}
+												RESULT = toReturn; 
+											:}
+			;
+			
+par_decls_list ::= var_decl:vd par_decls_list:pdl {: OpNode toReturn = new ParDeclOp("ParDeclsList", vd);
+														if (pdl!=null){
+														   	toReturn.addNode(pdl);
+														 }
+													 RESULT = toReturn; 
+												:}
+				|
+				/* empty */ {: RESULT = null; :}
+				;
+		
+body ::= LGPAR var_decls:vds statements:sts RGPAR SEMI {: RESULT = new OpNode("BodyOp", vds, sts); :}
+		;
+
+comp_stat ::= LGPAR statements:s RGPAR {: RESULT = new OpNode("CompStatOp", s); :}
+			;
+
+stat ::= comp_stat:cs {: RESULT = cs; :}
+		|
+		simple_stat:ss {: RESULT = ss; :}
+		;
+		
+simple_stat ::= vars:vars READ types:types SEMI {: RESULT = new ReadOp("ReadOp", vars, types); :}
+			|
+			out_values:outv WRITE SEMI {: RESULT = new WriteOp("WriteOp", outv); :}
+			|
+			NAME:name ASSIGN expr:expr SEMI {: RESULT = new AssignOp("AssignOp", new Leaf("ID", name, ""), expr); :}
+			|
+			NAME:name LPAR exprs:exprs COLON vars:vars RPAR SEMI {: RESULT = new CallOp("CallOp", new Leaf("ID", name, ""), exprs, vars); :}
+			|
+			IF LPAR bool_expr:bexpr RPAR THEN comp_stat:cstat1 ELSE comp_stat:cstat2 SEMI {: RESULT = new IfThenElseOp("IfThenElseOp", bexpr, cstat1, cstat2); :}
+			|
+			IF LPAR bool_expr:bexpr RPAR THEN comp_stat:cstat SEMI {: RESULT = new IfThenOp("IfThenOp", bexpr, cstat); :}
+			|
+			WHILE LPAR bool_expr:bexpr RPAR DO comp_stat:cstat SEMI {: RESULT = new WhileOp("WhileOp", bexpr, cstat); :}
+			;
+			
+			
+out_values ::= expr:e out_values_list:ovl {: OpNode toReturn = new OpNode("OutValuesExprOp", e);
+													if(ovl!=null){
+														for (Node node : ((OpNode) ovl).nodeList()){ 
+															toReturn.addNode(node);
+														}
+													}
+													RESULT = toReturn; 
+												:}
+			|
+			STRING_CONST:str out_values_list:ovl {: OpNode toReturn = new OpNode("OutValuesStringOp", new Leaf("STRING_CONST", str, "string") );
+															if(ovl!=null){
+																for (Node node : ((OpNode) ovl).nodeList()){ 
+																	toReturn.addNode(node);
+																}
+															}
+															RESULT = toReturn; 
+														:}
+			;
+			
+out_values_list ::= COMMA expr:e out_values_list:ovl {: OpNode toReturn = new OpNode("OutValuesExprList", e);
+																	if (ovl!=null){
+																	 	for (Node node : ((OpNode) ovl).nodeList()){ 
+																	   		toReturn.addNode(node); 
+																	   	}
+																	 }
+																  RESULT = toReturn; 
+																:}
+				|
+				COMMA STRING_CONST:str out_values_list:ovl	{: OpNode toReturn = new OpNode("OutValuesStringList", new Leaf("STRING_CONST", str, "string") );
+																	if (ovl!=null){
+																	 	for (Node node : ((OpNode) ovl).nodeList()){ 
+																	   		toReturn.addNode(node); 
+																	   	}
+																	 }
+																  RESULT = toReturn; 
+																:}							
+				|
+				/* empty */ {: RESULT = null; :}
+				;
+			
+exprs ::= expr:expr exprs_list:exprsl {: OpNode n = new OpNode("ExprsOp", expr);
+											if (exprsl!=null){
+								   		   		for (Node node : ((OpNode) exprsl).nodeList()){ 
+								   		   			n.addNode(node); 
+								   		   		}
+								   		   	}
+								   		   RESULT = n; 
+								   		:}
+		;
+		
+exprs_list ::= COMMA expr:expr exprs_list:exprsl	{: OpNode n = new OpNode("ExprsList", expr);
+														if (exprsl!=null){
+													   		for (Node node : ((OpNode) exprsl).nodeList()){
+													   			n.addNode(node); 
+													   		}
+													   	}
+												   RESULT = n; 
+												 :}
+			|
+			/* empty */	{: RESULT = null; :}
+			;
+		
+expr ::= NUMBER_INT:ni {: RESULT = new Leaf("INT_CONST",ni, "integer"); :}
+		|
+		NUMBER_DOUBLE:nd {: RESULT = new Leaf("DOUBLE_CONST", nd, "double"); :}
+		|
+		expr:ex1 arith_op:aop expr:ex2 {: switch(aop){
+											case "+": RESULT = new MathOp("AddOp", ex1, ex2);
+														break; 
+											case "-": RESULT = new MathOp("DiffOp", ex1, ex2);
+														break;
+											case "*": RESULT = new MathOp("MulOp", ex1, ex2);
+														break;
+											case "/": RESULT = new MathOp("DivOp", ex1, ex2);
+														break;
+										}
+							 			:}
+		|
+		NAME:name {: RESULT = new Leaf("ID",name, ""); :}
+		|
+		LPAR expr:e RPAR {: RESULT = e; :}
+		|
+		MINUS expr:ex {: RESULT = new UnaryOp("UminusOp", ex); :} %prec UMINUS
+		;
+		
+arith_op ::= PLUS:p {: RESULT = "+"; :}
+			|
+			MINUS:m {: RESULT = "-"; :}
+			|
+			TIMES:t {: RESULT = "*"; :}
+			|
+			DIV:d {: RESULT = "/"; :}
+			;
+			
+bool_expr ::= TRUE {: RESULT = new Leaf("BOOLEAN_CONSTANT","true", "boolean"); :}
+			|
+			FALSE {: RESULT = new Leaf("BOOLEAN_CONSTANT","false", "boolean"); :}
+			|
+			bool_expr:be1 bool_op:bop bool_expr:be2 {: if(bop.equals("AND")){
+															RESULT = new MathOp("AndOp", be1, be2);
+														}else{
+															RESULT = new MathOp("OrOp", be1, be2);
+														}
+													:}
+			|
+			NOT bool_expr:bex {: RESULT = new UnaryOp("NotOp", bex); :}
+			|
+			expr:ex1 rel_op:rop expr:ex2 {: switch(rop){
+											case "GT": RESULT = new MathOp("GtOp", ex1, ex2);
+														break;
+											case "GE": RESULT = new MathOp("GeOp", ex1, ex2);
+														break;
+											case "LT": RESULT = new MathOp("LtOp", ex1, ex2);
+														break;
+											case "LE": RESULT = new MathOp("LeOp", ex1, ex2);
+														break;
+											case "EQ": RESULT = new MathOp("EqOp", ex1, ex2);
+														break;
+										}
+							 			:}
+			|
+			LPAR bool_expr:bex RPAR {: RESULT = bex; :}
+			;
+			
+bool_op ::= AND {: RESULT = "AND"; :}
+		|
+		OR {: RESULT = "OR"; :}
+		;
+		
+rel_op ::= GT:gt {: RESULT = "GT"; :}
+		|
+		GE {: RESULT = "GE"; :}
+		|
+		LT {: RESULT = "LT"; :}
+		|
+		LE {: RESULT = "LE"; :}
+		|
+		EQ {: RESULT = "EQ"; :}
+		;
+ 

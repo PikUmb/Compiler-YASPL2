@@ -1,0 +1,18 @@
+<- a
+<- b
+*=
+//commento in linea
+if (b>1) c := a + b + 12 
+	D := c + 12.4
+else a := 1 
+_a->99.9 if then
+endif return
+D := c + 12.4
+/* 
+/**Ciao, sono un commento
+/**su
+/*più righe
+*/
+-> "Valore finale:", D +1, 2 +2, 
+"Ciao" .var  
+;

@@ -1,0 +1,148 @@
+/*
+	Semplice calcolatrice implementata utilizzando il linguaggio YASPL2.
+*/
+
+//Autore: Umberto Picariello
+
+head
+int sceltaOperazione, tipoOperazione;
+int numI1, numI2, risultatoInt;
+double numD1, numD2, risultatoD;
+int cicla;
+
+def benvenuto(int c;) : int rit; 
+{
+	"Benvenuto nella calcolatrice YASPL2"->;
+};
+
+def termina(int c;) : int rit; 
+{
+	"Grazie per aver utilizzato la calcolatrice YASPL2"->;
+};
+
+def operazioneInt(int p1, p2; int operazione;) : int out;
+{
+	if(operazione == 2) then
+	{
+		out= p1 + p2;
+	};
+
+	if(operazione == 3) then
+	{
+		out= p1 - p2;
+	};
+
+	if(operazione == 4) then
+	{
+		out= p1 * p2;
+	};
+
+	if(operazione == 5) then
+	{
+		out= p1 / p2;
+	};
+
+};
+
+
+def operazioneDouble(double p1, p2; int operazione;) : double out;
+{
+	if(operazione == 2) then
+	{
+		out= p1 + p2;
+	};
+
+	if(operazione == 3) then
+	{
+		out= p1 - p2;
+	};
+
+	if(operazione == 4) then
+	{
+		out= p1 * p2;
+	};
+
+	if(operazione == 5) then
+	{
+		out= p1 / p2;
+	};
+
+};
+
+
+start
+
+cicla= 1;
+
+benvenuto(cicla: cicla);
+
+while (cicla == 1) do
+{
+	"Menu utente" ->;
+	"Scegli l’operazione da effettuare, digita: " ->;
+	"2) ADDIZIONE" ->;
+	"3) SOTTRAZIONE" ->;
+	"4) MOLTIPLICAZIONE" ->;
+	"5) DIVISIONE" ->;
+
+	sceltaOperazione <- int;
+
+	if(sceltaOperazione > 5) then
+	{
+		"Operazione non riconosciuta"->;
+	};
+
+	"Scegli il tipo dei numeri:" ->;
+	"6) INT" ->;
+	"7) DOUBLE" ->;
+
+	tipoOperazione <- int;
+
+	if(tipoOperazione > 7) then
+	{
+		"Tipo non riconosciuto"->;
+	};
+
+	if(tipoOperazione == 6) then
+	{
+	
+		"Inserisci primo numero" ->;
+
+		numI1 <- int;
+
+		"Inserisci secondo numero" ->;
+
+		numI2 <- int;
+
+		operazioneInt(numI1, numI2, sceltaOperazione : risultatoInt);
+
+		"Risultato operazione:" ->;
+
+		risultatoInt ->;
+
+	}else{
+
+		"Inserisci primo numero" ->;
+
+		numD1 <- double;
+
+		"Inserisci secondo numero" ->;
+
+		numD2 <- double;
+
+		operazioneDouble(numD1, numD2, sceltaOperazione : risultatoD);
+
+		"Risultato operazione:" ->;
+
+		risultatoD ->;
+
+	};
+
+	"Digita 1 per effettuare altre operazioni, 0 per terminare!" ->;
+
+	cicla <- int;
+	
+};
+
+termina(cicla: cicla);
+

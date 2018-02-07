@@ -1,0 +1,11 @@
+//src/YASP2.cup/cup-compact-red=false
+//src/YASP2.cup/cup-debug=false
+//src/YASP2.cup/cup-expected-conflicts=0
+//src/YASP2.cup/cup-no-positions=false
+//src/YASP2.cup/cup-no-scanner=false
+//src/YASP2.cup/cup-non-terms=false
+//src/YASP2.cup/cup-output=src
+//src/YASP2.cup/cup-parser-class=YASP2Cup
+//src/YASP2.cup/cup-symbols-class=YASP2Sym
+//src/YASP2.cup/cup-symbols-if=true
+eclipse.preferences.version=1

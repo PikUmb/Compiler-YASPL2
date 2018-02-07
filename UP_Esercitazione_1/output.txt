@@ -1,0 +1,20 @@
+<RELOP, EQ>
+<IF>
+<ID, A>
+<RELOP, GT>
+<NUMBER, 12.3>
+<THEN>
+<NUMBER, 1.2>
+<ID, .3>
+<RELOP, PESCL>
+<IF>
+<ID, SOM>
+<RELOP, PINT>
+<ID, MA>
+<RELOP, GE>
+<NUMBER, 30>
+<THEN>
+<ELSE>
+<RETURN>
+<RELOP, MENO>
+<ID, SOMMA>

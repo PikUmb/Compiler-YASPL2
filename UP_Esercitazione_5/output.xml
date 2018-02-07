@@ -1,0 +1,160 @@
+<ProgramOp>
+<DeclsVarOp>
+<VarDeclOp>
+<integer/>
+<VarOp>
+<ID attr='scelta'/>
+</VarOp>
+</VarDeclOp>
+<VarDeclOp>
+<integer/>
+<VarOp>
+<ID attr='cicla'/>
+</VarOp>
+</VarDeclOp>
+<ProcDeclOp>
+<ID attr='controllaCicla'/>
+<VarDeclsOp>
+<VarDeclOp>
+<integer/>
+<VarOp>
+<ID attr='aa'/>
+<VarsList>
+<ID attr='kk'/>
+</VarsList>
+</VarOp>
+</VarDeclOp>
+<VarDeclOp>
+<integer/>
+<VarOp>
+<ID attr='b'/>
+</VarOp>
+</VarDeclOp>
+</VarDeclsOp>
+<ParDeclsOp>
+<VarDeclOp>
+<integer/>
+<VarOp>
+<ID attr='outscelta'/>
+</VarOp>
+</VarDeclOp>
+</ParDeclsOp>
+<BodyOp>
+<null/>
+<StatsOp>
+<IfThenElseOp>
+<EqOp>
+<ID attr='b'/>
+<INT_CONST attr='1'/>
+</EqOp>
+<CompStatOp>
+<StatsOp>
+<AssignOp>
+<ID attr='outscelta'/>
+<AddOp>
+<ID attr='aa'/>
+<ID attr='kk'/>
+</AddOp>
+</AssignOp>
+</StatsOp>
+</CompStatOp>
+<CompStatOp>
+<StatsOp>
+<AssignOp>
+<ID attr='outscelta'/>
+<INT_CONST attr='0'/>
+</AssignOp>
+</StatsOp>
+</CompStatOp>
+</IfThenElseOp>
+</StatsOp>
+</BodyOp>
+</ProcDeclOp>
+<ProcDeclOp>
+<ID attr='controll'/>
+<VarDeclsOp>
+<VarDeclOp>
+<integer/>
+<VarOp>
+<ID attr='aa'/>
+</VarOp>
+</VarDeclOp>
+</VarDeclsOp>
+<ParDeclsOp>
+<VarDeclOp>
+<integer/>
+<VarOp>
+<ID attr='o'/>
+</VarOp>
+</VarDeclOp>
+</ParDeclsOp>
+<BodyOp>
+<null/>
+<StatsOp>
+<AssignOp>
+<ID attr='o'/>
+<INT_CONST attr='2000'/>
+</AssignOp>
+</StatsOp>
+</BodyOp>
+</ProcDeclOp>
+</DeclsVarOp>
+<StatsOp>
+<AssignOp>
+<ID attr='scelta'/>
+<UminusOp>
+<INT_CONST attr='1'/>
+</UminusOp>
+</AssignOp>
+<CallOp>
+<ID attr='controllaCicla'/>
+<ExprsOp>
+<ID attr='scelta'/>
+<ID attr='scelta'/>
+<ID attr='scelta'/>
+</ExprsOp>
+<VarOp>
+<ID attr='cicla'/>
+</VarOp>
+</CallOp>
+<WriteOp>
+<OutValuesStringOp>
+<STRING_CONST attr='Ciao Carmine, sono l&apos;eseguibile Web!'/>
+</OutValuesStringOp>
+</WriteOp>
+<WriteOp>
+<OutValuesStringOp>
+<STRING_CONST attr='Risultato prima funzione: '/>
+</OutValuesStringOp>
+</WriteOp>
+<WriteOp>
+<OutValuesExprOp>
+<ID attr='cicla'/>
+</OutValuesExprOp>
+</WriteOp>
+<CallOp>
+<ID attr='controll'/>
+<ExprsOp>
+<ID attr='scelta'/>
+</ExprsOp>
+<VarOp>
+<ID attr='cicla'/>
+</VarOp>
+</CallOp>
+<WriteOp>
+<OutValuesStringOp>
+<STRING_CONST attr='Risultato seconda funzione: '/>
+</OutValuesStringOp>
+</WriteOp>
+<WriteOp>
+<OutValuesExprOp>
+<ID attr='cicla'/>
+</OutValuesExprOp>
+</WriteOp>
+<WriteOp>
+<OutValuesStringOp>
+<STRING_CONST attr='Compilato con Emscripten'/>
+</OutValuesStringOp>
+</WriteOp>
+</StatsOp>
+</ProgramOp>

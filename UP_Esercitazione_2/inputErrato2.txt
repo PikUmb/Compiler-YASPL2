@@ -1,0 +1,4 @@
+"Prima stringa costante scritta correttamente"
+"Seconda stringa con \\\\ e \\\", corretta"
+
+" inserisco EOF all'interno di una stringa costante

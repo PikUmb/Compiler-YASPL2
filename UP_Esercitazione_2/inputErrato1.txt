@@ -1,0 +1,13 @@
+/* Scrivo
+ bene
+ Questo 
+ è
+ il 
+ primo 
+ commento 
+ ***
+ multilinea*/
+ 
+ //Scrivo bene il primo line comment /* ciao */
+
+/* inserisco EOF all'interno di un commento

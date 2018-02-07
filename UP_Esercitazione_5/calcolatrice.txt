@@ -1,0 +1,123 @@
+/*
+	In questo programma implemento una semplice calcolatrice
+	utilizzando il linguaggio YASPL2
+*/
+
+head
+	int num1, num2, result;
+	double numD1, numD2, resultD;
+	int operation, type;
+	bool boolValue, exit;
+	
+	def HelloCalculator(int a;): bool toReturn;   //devo per forza dare un parametro in input, perche la chiamata a funzione lo richiede!
+	{
+		"Benvenuto nella prima calcolatrice scritta in YASPL2!" ->;
+	};
+	
+	def IntOperation(int x, y; int op;) : int z;
+	{		
+		if(op==2) then
+		{
+			z = x + y;
+		};
+		
+		if(op==3) then
+		{
+			z = x - y;
+		};
+		
+		if(op==4) then
+		{
+			z = x * y;
+		};
+		
+		if(op==5) then
+		{
+			z = x / y;
+		};
+		
+		if(op>5) then
+		{
+			"OPERAZIONE ERRATA" ->;
+			z = 0;
+		};
+	};
+	
+	def DoubleOperation(double x, y; int op;) : double z;
+	{
+		if(op==2) then
+		{
+			z = x + y;
+		};
+		
+		if(op==3) then
+		{
+			z = x - y;
+		};
+		
+		if(op==4) then
+		{
+			z = x * y;
+		};
+		
+		if(op==5) then
+		{
+			z = x / y;
+		};
+		
+		if(op>5) then
+		{
+			"OPERAZIONE ERRATA" ->;
+			z = 0;
+		};
+	};
+	
+start
+	HelloCalculator(num1 : boolValue); //errore della grammatica
+	//notiamo che devo per forza passare un parametro in input nella chiamata di una funzione
+	
+	//exit=true;
+	while(true) do	 //while(not exit)
+	{
+		"MENU UTENTE"->;
+		"Premi 2 per ADDIZIONE"->;
+		"Premi 3 per SOTTRAZIONE"->;
+		"Premi 4 per MOLTIPLICAZIONE"->;
+		"Premi 5 per DIVISIONE"->;
+		
+		operation <- int;
+		
+		"SELEZIONARE IL TIPO DEI NUMERI" ->;
+		"Premi 6 per INT"->;
+		"Premi 7 per DOUBLE"->;
+		
+		type <- int;
+		
+		if(type==6) then 
+		{
+			"Inserisci primo numero (INT)" ->;
+			num1 <- int;
+			"Inserisci secondo numero (INT)" ->;
+			num2 <- int;
+			
+			IntOperation(num1,num2,operation:result);
+			"RISULTATO: ",result ->;
+		}
+		else
+		{
+			"Inserisci primo numero (DOUBLE)" ->;
+			numD1 <- double;
+			"Inserisci secondo numero (DOUBLE)" ->;
+			numD2 <- double;
+			
+			DoubleOperation(numD1,numD2,operation:resultD);
+			"RISULTATO: ",resultD ->;
+		};
+		
+		"Premi 0 per CONTINUARE" ->;
+		"Premi 1 per uscire" ->;
+		
+		//exit <- int;
+	};
+	
+	

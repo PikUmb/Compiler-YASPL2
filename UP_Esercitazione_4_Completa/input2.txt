@@ -1,0 +1,14 @@
+head
+def funzioneSenzaParametriDiInput():bool out;
+{
+	if((operatore==2)&&(a==1)) then
+	{
+		out= p1+p2;
+	};
+
+};
+
+start
+prova = -12;
+//alla chiamata a funzione devo passare almeno un input, viene segnalato errore
+out(:out);

@@ -1,0 +1,1 @@
+(somma + x * (a + d)); a * ((c)) + prova

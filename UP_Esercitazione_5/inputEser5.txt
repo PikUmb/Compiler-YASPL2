@@ -1,0 +1,194 @@
+/*
+	Programma "Serie di funzioni" implementato utilizzando il linguaggio YASPL2.
+*/
+
+//Autore: Umberto Picariello
+
+head
+int sceltaOperazione;
+int num1, num2, risultato;
+int cicla;
+
+def benvenuto(int c;) : int rit; 
+{
+	"Benvenuto in *Serie di funzioni* YASPL2"->;
+};
+
+def termina(int c;) : int rit; 
+{
+	"Grazie per aver utilizzato *Serie di funzioni* YASPL2"->;
+};
+
+def somma(int p1, p2;) : int out;
+{
+	out= p1 + p2;
+
+};
+
+
+def moltiplicazione(int p1, p2;) : int out;
+{
+	int n, finale;
+	n= p2;
+	finale= p1;
+	
+	if( n == 0) then
+	{
+		out= 0;
+	};
+	
+	if( n == 1) then
+	{
+		out= p1;
+	};
+
+	while( n > 1 ) do
+	{
+		p2= finale;
+		somma(p1, p2 : finale);
+		n= n-1;
+	};
+
+	out= finale;
+
+};
+
+def divisione(int p1, p2;) : int out;
+{
+	if( p2 > 0 ) then
+	{
+		out= p1 / p2;
+	}else{
+		"Impossibile dividere per zero!" ->;
+		out= -1;
+	};
+
+};
+
+def potenza(int p1, p2;) : int out;
+{
+	int n, finale;
+	n= p2;
+	finale= p1;
+	
+	if( n == 0) then
+	{
+		out= 0;
+	};
+	
+	if( n == 1) then
+	{
+		out= p1;
+	};
+
+	while( n > 1 ) do
+	{
+		p2= finale;
+		moltiplicazione(p1, p2 : finale);
+		n= n-1;
+	};
+
+	out= finale;
+
+};
+
+def fib(int p1;) : int out;
+{
+	int f0, f1, i, ris;
+	f0= 0;
+	f1= 1;
+	i= 2;
+	
+	while ( i<=p1) do
+	{
+		ris= f1 + f0;
+		f0= f1;
+		f1= ris;
+		i= i + 1;
+
+	};
+
+	out= ris;
+	
+};
+
+
+start
+
+cicla= 1;
+
+benvenuto(cicla: cicla);
+
+while (cicla == 1) do
+{
+	"Quale funzione vuoi chiamare?" ->;
+	"1) SOMMA" ->;
+	"2) MOLTIPLICAZIONE" ->;
+	"3) DIVISIONE" ->;
+	"4) POTENZA" ->;
+	"5) FIBONACCI" ->;
+
+	sceltaOperazione <- int;
+
+	if( sceltaOperazione == 1) then
+	{
+		"Inserisci primo numero:" ->;
+		num1 <- int;
+		"Inserisci secondo numero:" ->;
+		num2 <- int;
+		somma(num1, num2 : risultato);
+		"Risultato: " ->;
+		risultato ->;
+	};
+
+	if( sceltaOperazione == 2) then
+	{
+		"Inserisci primo numero:" ->;
+		num1 <- int;
+		"Inserisci secondo numero:" ->;
+		num2 <- int;
+		moltiplicazione(num1, num2 : risultato);
+		"Risultato: " ->;
+		risultato ->;
+	};
+
+	if( sceltaOperazione == 3) then
+	{
+		"Inserisci primo numero:" ->;
+		num1 <- int;
+		"Inserisci secondo numero:" ->;
+		num2 <- int;
+		divisione(num1, num2 : risultato);
+		"Risultato: " ->;
+		risultato ->;
+	};
+
+	if( sceltaOperazione == 4) then
+	{
+		"Inserisci primo numero:" ->;
+		num1 <- int;
+		"Inserisci secondo numero:" ->;
+		num2 <- int;
+		potenza(num1, num2 : risultato);
+		"Risultato: " ->;
+		risultato ->;
+	};
+
+	if( sceltaOperazione == 5) then
+	{
+		"Inserisci un numero:" ->;
+		num1 <- int;
+		fib(num1 : risultato);
+		"Risultato: " ->;
+		risultato ->;
+	};
+
+
+	"Digita 1 per richiamare altre funzioni, 0 per terminare!" ->;
+
+	cicla <- int;
+	
+};
+
+termina(cicla: cicla);
+

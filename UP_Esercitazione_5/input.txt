@@ -1,0 +1,49 @@
+head
+int scelta;
+int cicla;
+
+
+def controllaCicla(int aa, kk; int b;):int outscelta;
+{
+	if(b==1)then
+	{
+		outscelta= aa+kk;
+	}else{
+		outscelta= 0;
+	};
+
+};
+
+def controll(int aa;):int o;
+{
+	o= 2000;
+
+};
+
+
+
+/* commento
+multilinea
+*/
+
+
+start
+
+scelta= -1;
+
+controllaCicla(scelta, scelta, scelta : cicla);
+
+"Ciao Carmine, sono l'eseguibile Web!" ->;
+
+"Risultato prima funzione: " ->;
+
+cicla ->;
+
+controll(scelta : cicla);	
+
+"Risultato seconda funzione: " ->;
+
+cicla ->;
+
+"Compilato con Emscripten" ->;
+

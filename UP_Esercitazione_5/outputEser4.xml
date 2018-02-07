@@ -1,0 +1,549 @@
+<ProgramOp>
+<DeclsVarOp>
+<VarDeclOp>
+<integer/>
+<VarOp>
+<ID attr='sceltaOperazione'/>
+<VarsList>
+<ID attr='tipoOperazione'/>
+</VarsList>
+</VarOp>
+</VarDeclOp>
+<VarDeclOp>
+<integer/>
+<VarOp>
+<ID attr='numI1'/>
+<VarsList>
+<ID attr='numI2'/>
+<VarsList>
+<ID attr='risultatoInt'/>
+</VarsList>
+</VarsList>
+</VarOp>
+</VarDeclOp>
+<VarDeclOp>
+<double/>
+<VarOp>
+<ID attr='numD1'/>
+<VarsList>
+<ID attr='numD2'/>
+<VarsList>
+<ID attr='risultatoD'/>
+</VarsList>
+</VarsList>
+</VarOp>
+</VarDeclOp>
+<VarDeclOp>
+<integer/>
+<VarOp>
+<ID attr='cicla'/>
+</VarOp>
+</VarDeclOp>
+<ProcDeclOp>
+<ID attr='benvenuto'/>
+<VarDeclsOp>
+<VarDeclOp>
+<integer/>
+<VarOp>
+<ID attr='c'/>
+</VarOp>
+</VarDeclOp>
+</VarDeclsOp>
+<ParDeclsOp>
+<VarDeclOp>
+<integer/>
+<VarOp>
+<ID attr='rit'/>
+</VarOp>
+</VarDeclOp>
+</ParDeclsOp>
+<BodyOp>
+<null/>
+<StatsOp>
+<WriteOp>
+<OutValuesStringOp>
+<STRING_CONST attr='Benvenuto nella calcolatrice YASPL2'/>
+</OutValuesStringOp>
+</WriteOp>
+</StatsOp>
+</BodyOp>
+</ProcDeclOp>
+<ProcDeclOp>
+<ID attr='termina'/>
+<VarDeclsOp>
+<VarDeclOp>
+<integer/>
+<VarOp>
+<ID attr='c'/>
+</VarOp>
+</VarDeclOp>
+</VarDeclsOp>
+<ParDeclsOp>
+<VarDeclOp>
+<integer/>
+<VarOp>
+<ID attr='rit'/>
+</VarOp>
+</VarDeclOp>
+</ParDeclsOp>
+<BodyOp>
+<null/>
+<StatsOp>
+<WriteOp>
+<OutValuesStringOp>
+<STRING_CONST attr='Grazie per aver utilizzato la calcolatrice YASPL2'/>
+</OutValuesStringOp>
+</WriteOp>
+</StatsOp>
+</BodyOp>
+</ProcDeclOp>
+<ProcDeclOp>
+<ID attr='operazioneInt'/>
+<VarDeclsOp>
+<VarDeclOp>
+<integer/>
+<VarOp>
+<ID attr='p1'/>
+<VarsList>
+<ID attr='p2'/>
+</VarsList>
+</VarOp>
+</VarDeclOp>
+<VarDeclOp>
+<integer/>
+<VarOp>
+<ID attr='operazione'/>
+</VarOp>
+</VarDeclOp>
+</VarDeclsOp>
+<ParDeclsOp>
+<VarDeclOp>
+<integer/>
+<VarOp>
+<ID attr='out'/>
+</VarOp>
+</VarDeclOp>
+</ParDeclsOp>
+<BodyOp>
+<null/>
+<StatsOp>
+<IfThenOp>
+<EqOp>
+<ID attr='operazione'/>
+<INT_CONST attr='2'/>
+</EqOp>
+<CompStatOp>
+<StatsOp>
+<AssignOp>
+<ID attr='out'/>
+<AddOp>
+<ID attr='p1'/>
+<ID attr='p2'/>
+</AddOp>
+</AssignOp>
+</StatsOp>
+</CompStatOp>
+</IfThenOp>
+<IfThenOp>
+<EqOp>
+<ID attr='operazione'/>
+<INT_CONST attr='3'/>
+</EqOp>
+<CompStatOp>
+<StatsOp>
+<AssignOp>
+<ID attr='out'/>
+<DiffOp>
+<ID attr='p1'/>
+<ID attr='p2'/>
+</DiffOp>
+</AssignOp>
+</StatsOp>
+</CompStatOp>
+</IfThenOp>
+<IfThenOp>
+<EqOp>
+<ID attr='operazione'/>
+<INT_CONST attr='4'/>
+</EqOp>
+<CompStatOp>
+<StatsOp>
+<AssignOp>
+<ID attr='out'/>
+<MulOp>
+<ID attr='p1'/>
+<ID attr='p2'/>
+</MulOp>
+</AssignOp>
+</StatsOp>
+</CompStatOp>
+</IfThenOp>
+<IfThenOp>
+<EqOp>
+<ID attr='operazione'/>
+<INT_CONST attr='5'/>
+</EqOp>
+<CompStatOp>
+<StatsOp>
+<AssignOp>
+<ID attr='out'/>
+<DivOp>
+<ID attr='p1'/>
+<ID attr='p2'/>
+</DivOp>
+</AssignOp>
+</StatsOp>
+</CompStatOp>
+</IfThenOp>
+</StatsOp>
+</BodyOp>
+</ProcDeclOp>
+<ProcDeclOp>
+<ID attr='operazioneDouble'/>
+<VarDeclsOp>
+<VarDeclOp>
+<double/>
+<VarOp>
+<ID attr='p1'/>
+<VarsList>
+<ID attr='p2'/>
+</VarsList>
+</VarOp>
+</VarDeclOp>
+<VarDeclOp>
+<integer/>
+<VarOp>
+<ID attr='operazione'/>
+</VarOp>
+</VarDeclOp>
+</VarDeclsOp>
+<ParDeclsOp>
+<VarDeclOp>
+<double/>
+<VarOp>
+<ID attr='out'/>
+</VarOp>
+</VarDeclOp>
+</ParDeclsOp>
+<BodyOp>
+<null/>
+<StatsOp>
+<IfThenOp>
+<EqOp>
+<ID attr='operazione'/>
+<INT_CONST attr='2'/>
+</EqOp>
+<CompStatOp>
+<StatsOp>
+<AssignOp>
+<ID attr='out'/>
+<AddOp>
+<ID attr='p1'/>
+<ID attr='p2'/>
+</AddOp>
+</AssignOp>
+</StatsOp>
+</CompStatOp>
+</IfThenOp>
+<IfThenOp>
+<EqOp>
+<ID attr='operazione'/>
+<INT_CONST attr='3'/>
+</EqOp>
+<CompStatOp>
+<StatsOp>
+<AssignOp>
+<ID attr='out'/>
+<DiffOp>
+<ID attr='p1'/>
+<ID attr='p2'/>
+</DiffOp>
+</AssignOp>
+</StatsOp>
+</CompStatOp>
+</IfThenOp>
+<IfThenOp>
+<EqOp>
+<ID attr='operazione'/>
+<INT_CONST attr='4'/>
+</EqOp>
+<CompStatOp>
+<StatsOp>
+<AssignOp>
+<ID attr='out'/>
+<MulOp>
+<ID attr='p1'/>
+<ID attr='p2'/>
+</MulOp>
+</AssignOp>
+</StatsOp>
+</CompStatOp>
+</IfThenOp>
+<IfThenOp>
+<EqOp>
+<ID attr='operazione'/>
+<INT_CONST attr='5'/>
+</EqOp>
+<CompStatOp>
+<StatsOp>
+<AssignOp>
+<ID attr='out'/>
+<DivOp>
+<ID attr='p1'/>
+<ID attr='p2'/>
+</DivOp>
+</AssignOp>
+</StatsOp>
+</CompStatOp>
+</IfThenOp>
+</StatsOp>
+</BodyOp>
+</ProcDeclOp>
+</DeclsVarOp>
+<StatsOp>
+<AssignOp>
+<ID attr='cicla'/>
+<INT_CONST attr='1'/>
+</AssignOp>
+<CallOp>
+<ID attr='benvenuto'/>
+<ExprsOp>
+<ID attr='cicla'/>
+</ExprsOp>
+<VarOp>
+<ID attr='cicla'/>
+</VarOp>
+</CallOp>
+<WhileOp>
+<EqOp>
+<ID attr='cicla'/>
+<INT_CONST attr='1'/>
+</EqOp>
+<CompStatOp>
+<StatsOp>
+<WriteOp>
+<OutValuesStringOp>
+<STRING_CONST attr='Menu utente'/>
+</OutValuesStringOp>
+</WriteOp>
+<WriteOp>
+<OutValuesStringOp>
+<STRING_CONST attr='Scegli l’operazione da effettuare, digita: '/>
+</OutValuesStringOp>
+</WriteOp>
+<WriteOp>
+<OutValuesStringOp>
+<STRING_CONST attr='2) ADDIZIONE'/>
+</OutValuesStringOp>
+</WriteOp>
+<WriteOp>
+<OutValuesStringOp>
+<STRING_CONST attr='3) SOTTRAZIONE'/>
+</OutValuesStringOp>
+</WriteOp>
+<WriteOp>
+<OutValuesStringOp>
+<STRING_CONST attr='4) MOLTIPLICAZIONE'/>
+</OutValuesStringOp>
+</WriteOp>
+<WriteOp>
+<OutValuesStringOp>
+<STRING_CONST attr='5) DIVISIONE'/>
+</OutValuesStringOp>
+</WriteOp>
+<ReadOp>
+<VarOp>
+<ID attr='sceltaOperazione'/>
+</VarOp>
+<TypesOp>
+<integer/>
+</TypesOp>
+</ReadOp>
+<IfThenOp>
+<GtOp>
+<ID attr='sceltaOperazione'/>
+<INT_CONST attr='5'/>
+</GtOp>
+<CompStatOp>
+<StatsOp>
+<WriteOp>
+<OutValuesStringOp>
+<STRING_CONST attr='Operazione non riconosciuta'/>
+</OutValuesStringOp>
+</WriteOp>
+</StatsOp>
+</CompStatOp>
+</IfThenOp>
+<WriteOp>
+<OutValuesStringOp>
+<STRING_CONST attr='Scegli il tipo dei numeri:'/>
+</OutValuesStringOp>
+</WriteOp>
+<WriteOp>
+<OutValuesStringOp>
+<STRING_CONST attr='6) INT'/>
+</OutValuesStringOp>
+</WriteOp>
+<WriteOp>
+<OutValuesStringOp>
+<STRING_CONST attr='7) DOUBLE'/>
+</OutValuesStringOp>
+</WriteOp>
+<ReadOp>
+<VarOp>
+<ID attr='tipoOperazione'/>
+</VarOp>
+<TypesOp>
+<integer/>
+</TypesOp>
+</ReadOp>
+<IfThenOp>
+<GtOp>
+<ID attr='tipoOperazione'/>
+<INT_CONST attr='7'/>
+</GtOp>
+<CompStatOp>
+<StatsOp>
+<WriteOp>
+<OutValuesStringOp>
+<STRING_CONST attr='Tipo non riconosciuto'/>
+</OutValuesStringOp>
+</WriteOp>
+</StatsOp>
+</CompStatOp>
+</IfThenOp>
+<IfThenElseOp>
+<EqOp>
+<ID attr='tipoOperazione'/>
+<INT_CONST attr='6'/>
+</EqOp>
+<CompStatOp>
+<StatsOp>
+<WriteOp>
+<OutValuesStringOp>
+<STRING_CONST attr='Inserisci primo numero'/>
+</OutValuesStringOp>
+</WriteOp>
+<ReadOp>
+<VarOp>
+<ID attr='numI1'/>
+</VarOp>
+<TypesOp>
+<integer/>
+</TypesOp>
+</ReadOp>
+<WriteOp>
+<OutValuesStringOp>
+<STRING_CONST attr='Inserisci secondo numero'/>
+</OutValuesStringOp>
+</WriteOp>
+<ReadOp>
+<VarOp>
+<ID attr='numI2'/>
+</VarOp>
+<TypesOp>
+<integer/>
+</TypesOp>
+</ReadOp>
+<CallOp>
+<ID attr='operazioneInt'/>
+<ExprsOp>
+<ID attr='numI1'/>
+<ID attr='numI2'/>
+<ID attr='sceltaOperazione'/>
+</ExprsOp>
+<VarOp>
+<ID attr='risultatoInt'/>
+</VarOp>
+</CallOp>
+<WriteOp>
+<OutValuesStringOp>
+<STRING_CONST attr='Risultato operazione:'/>
+</OutValuesStringOp>
+</WriteOp>
+<WriteOp>
+<OutValuesExprOp>
+<ID attr='risultatoInt'/>
+</OutValuesExprOp>
+</WriteOp>
+</StatsOp>
+</CompStatOp>
+<CompStatOp>
+<StatsOp>
+<WriteOp>
+<OutValuesStringOp>
+<STRING_CONST attr='Inserisci primo numero'/>
+</OutValuesStringOp>
+</WriteOp>
+<ReadOp>
+<VarOp>
+<ID attr='numD1'/>
+</VarOp>
+<TypesOp>
+<double/>
+</TypesOp>
+</ReadOp>
+<WriteOp>
+<OutValuesStringOp>
+<STRING_CONST attr='Inserisci secondo numero'/>
+</OutValuesStringOp>
+</WriteOp>
+<ReadOp>
+<VarOp>
+<ID attr='numD2'/>
+</VarOp>
+<TypesOp>
+<double/>
+</TypesOp>
+</ReadOp>
+<CallOp>
+<ID attr='operazioneDouble'/>
+<ExprsOp>
+<ID attr='numD1'/>
+<ID attr='numD2'/>
+<ID attr='sceltaOperazione'/>
+</ExprsOp>
+<VarOp>
+<ID attr='risultatoD'/>
+</VarOp>
+</CallOp>
+<WriteOp>
+<OutValuesStringOp>
+<STRING_CONST attr='Risultato operazione:'/>
+</OutValuesStringOp>
+</WriteOp>
+<WriteOp>
+<OutValuesExprOp>
+<ID attr='risultatoD'/>
+</OutValuesExprOp>
+</WriteOp>
+</StatsOp>
+</CompStatOp>
+</IfThenElseOp>
+<WriteOp>
+<OutValuesStringOp>
+<STRING_CONST attr='Digita 1 per effettuare altre operazioni, 0 per terminare!'/>
+</OutValuesStringOp>
+</WriteOp>
+<ReadOp>
+<VarOp>
+<ID attr='cicla'/>
+</VarOp>
+<TypesOp>
+<integer/>
+</TypesOp>
+</ReadOp>
+</StatsOp>
+</CompStatOp>
+</WhileOp>
+<CallOp>
+<ID attr='termina'/>
+<ExprsOp>
+<ID attr='cicla'/>
+</ExprsOp>
+<VarOp>
+<ID attr='cicla'/>
+</VarOp>
+</CallOp>
+</StatsOp>
+</ProgramOp>
